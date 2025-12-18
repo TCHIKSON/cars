@@ -1,29 +1,24 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
+const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
 
+require("./Config/db.js");
 
-require('./Config/db.js'); 
-
-
-const carRoutes = require('./Routes/cars.routes');
+const carRoutes = require("./Routes/cars.routes");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-
 app.use(cors());
 app.use(express.json());
 
-
-app.use('/api/cars', carRoutes);
+app.use("/api/cars", carRoutes);
 
 // Route de test rapide
-app.get('/api/message', (req, res) => {
-    res.json({ message: "Backend opérationnel avec DB et Services !" });
+app.get("/api/message", (req, res) => {
+  res.json({ message: "Backend opérationnel avec DB et Services !" });
 });
 
-
 app.listen(PORT, () => {
-    console.log(` Serveur démarré sur http://localhost:${PORT}`);
+  console.log(` Serveur démarré sur http://localhost:${PORT}`);
 });
