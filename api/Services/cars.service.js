@@ -1,4 +1,4 @@
-const Car = require('../Models/car.model.js');
+const {Car} = require('../Models/car.model.js');
 
 class CarsService {
     
