@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { apiService } from "../main";
+import { api } from "../Services/api.js";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ function SignUp() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    apiService.auth
+    api.auth
       .signUp(form)
       .then((response) => {
         if (response.error) {
@@ -29,7 +29,7 @@ function SignUp() {
         setError("");
         
         setTimeout(() => {
-          navigate("/signin");
+          navigate("/");
         }, 1500);
       })
       .catch((err) => {
@@ -47,12 +47,12 @@ function SignUp() {
         </h1>
         {error && (
           <p className="mb-4 rounded-md bg-red-500/10 px-3 py-2 text-sm text-red-400">
-            {error}
+            {error?.message || error}
           </p>
         )}
         {success && (
           <p className="mb-4 rounded-md bg-green-500/10 px-3 py-2 text-sm text-green-400">
-            {success}
+            {success?.message || success}
           </p>
         )}
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -118,7 +118,7 @@ function SignUp() {
         <p className="mt-4 text-center text-xs text-slate-400">
           Vous avez déjà un compte ?{" "}
           <Link
-            to="/signin"
+            to="/"
             className="font-medium text-blue-400 hover:text-blue-300"
           >
             Se connecter

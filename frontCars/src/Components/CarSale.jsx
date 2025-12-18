@@ -1,11 +1,11 @@
-import { carService } from '../Services/carService';
+import { api } from '../Services/api';
 
 const CarSales = ({ car, onActionSuccess }) => {
     
     const toggleAvailability = async () => {
         try {
             
-            await carService.update(car._id, { isAvailable: !car.isAvailable });
+            await api.car.update(car._id, { isAvailable: !car.isAvailable });
             
             if (onActionSuccess) onActionSuccess();
         } catch (error) {
@@ -20,7 +20,7 @@ const CarSales = ({ car, onActionSuccess }) => {
             <p>
                 <strong>Statut :</strong> 
                 <span style={{ color: car.isAvailable ? 'green' : 'red' }}>
-                    {car.isAvailable ? ' En stock' : ' Vendu / Réservé'}
+                    {car.isAvailable ? ' Disponible' : ' Vendu / Réservé'}
                 </span>
             </p>
             

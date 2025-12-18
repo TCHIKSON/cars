@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom'; 
-import { carService } from '../Services/carService';
+import { api } from '../Services/api';
 import CarSpec from '../Components/CarSpec';
 import CarSales from '../Components/CarSale'; 
 
@@ -11,8 +11,8 @@ const CarDetails = () => {
 
     const loadCar = async () => {
         try {
-            const response = await carService.getById(id);
-            setCarData(response.data);
+            const response = await api.car.getById(id);
+            setCarData(response);
         } catch (error) {
             console.error("Erreur chargement:", error);
         } finally {

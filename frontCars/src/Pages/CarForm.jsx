@@ -1,29 +1,34 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { carService } from "../Services/carService";
+import { api } from "../Services/api"
 
 const CarForm = () => {
-  const { id } = useParams(); 
+ const { id } = useParams(); 
   const navigate = useNavigate();
   const isEditMode = Boolean(id);
 
-  const [car, setCar] = useState({ brand: "", model: "", year: new Date().getFullYear(), category: "", imageUrl: "", isAvailable: false });
+  const [car, setCar] = useState({ 
+    brand: "", model: "", year: new Date().getFullYear(), 
+    category: "", imageUrl: "", isAvailable: false, price: 0 
+  });
   const [error, setError] = useState("");
 
- 
   useEffect(() => {
     if (isEditMode) {
-      carService
-        .getById(id)
-        .then((res) => setCar(res.data))
-        .catch((_err) => setError("Impossible de charger la voiture"));
+      // Avec ton ApiService, on n'utilise plus .data car retValue est déjà le JSON
+      api.car.getById(id)
+        .then((res) => {
+          // Si ton serveur renvoie { brand: '...', ... } directement :
+          setCar(res); 
+          // Si ton serveur renvoie { data: { brand: '...' } }, garde res.data
+        })
+        .catch(() => setError("Impossible de charger la voiture"));
     }
   }, [id, isEditMode]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
- 
       const dataToSend = {
         brand: car.brand,
         model: car.model,
@@ -34,14 +39,21 @@ const CarForm = () => {
         imageUrl: car.imageUrl || "",
       };
 
+      let result;
       if (isEditMode) {
-        await carService.update(id, dataToSend);
+        result = await api.car.update(id, dataToSend);
       } else {
-        await carService.create(dataToSend);
+        result = await api.car.create(dataToSend);
       }
-      navigate("/");
+
+      // Gestion d'erreur basée sur ton ApiService (qui renvoie le JSON d'erreur)
+      if (result.error) {
+        setError(result.message);
+      } else {
+        navigate("/");
+      }
     } catch (err) {
-      setError(err.response?.data?.message || "Erreur serveur");
+      setError("Une erreur critique est survenue");
     }
   };
 

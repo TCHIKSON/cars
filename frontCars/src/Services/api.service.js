@@ -65,6 +65,26 @@ export class ApiService {
     return retValue;
   }
 
+  async put(endpoint, data = {}) {
+    const response = await fetch(`${this.baseUrl}${endpoint}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.accessToken}`,
+      },
+      body: JSON.stringify(data),
+    });
+
+    const retValue = await response.json();
+
+    if ([401, 403].includes(retValue.statusCode)) {
+      this.accessToken = "";
+      localStorage.removeItem("token");
+    }
+
+    return retValue;
+  }
+
   async delete(endpoint) {
     const response = await fetch(`${this.baseUrl}${endpoint}`, {
       method: "DELETE",
@@ -93,17 +113,17 @@ export class ApiService {
   };
 
   car = {
-    create: async ({ brand, model, year, price, description, mileage, color, category, features, images }) => {
-      return await this.post("/cars", { brand, model, year, price, description, mileage, color, category, features, images });
+    create: async (data) => {
+      return await this.post("/cars/create", data);
     },
-    getOne: async (id) => {
+    getById: async (id) => {
       return await this.get(`/cars/${id}`);
     },
     getAll: async () => {
       return await this.get(`/cars`);
     },
-    update: async (id, { brand, model, year, price, description, mileage, color, category, features, available, images }) => {
-      return await this.patch(`/cars/${id}`, { brand, model, year, price, description, mileage, color, category, features, available, images });
+    update: async (id, data) => {
+      return await this.put(`/cars/update/${id}`, data);
     },
     delete: async (id) => {
       return await this.delete(`/cars/${id}`);

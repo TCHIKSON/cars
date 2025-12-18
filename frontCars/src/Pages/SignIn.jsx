@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { apiService } from "../main";
+import { api } from "../Services/api";
 
 function SignIn() {
   const navigate = useNavigate();
@@ -15,18 +15,19 @@ function SignIn() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    apiService.auth
+    api.auth
       .signIn(form)
       .then((response) => {
+                console.log("🔍 RÉPONSE REÇUE:", response);
         if (response.error) {
           setError(response.message);
           return;
         }
 
         localStorage.setItem("token", response.data.token);
-        apiService.updateAccessToken(response.data.token);
+        api.updateAccessToken(response.data.token);
 
-        navigate("/admin/cars");
+        navigate("/add");
       })
       .catch((err) => {
         console.log(err);
@@ -42,7 +43,7 @@ function SignIn() {
         </h1>
         {error && (
           <p className="mb-4 rounded-md bg-red-500/10 px-3 py-2 text-sm text-red-400">
-            {error}
+            {error?.message || error}
           </p>
         )}
         <form onSubmit={handleSubmit} className="space-y-4">

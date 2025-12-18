@@ -30,6 +30,7 @@ exports.createCar = async (req, res) => {
 };
 
 exports.updateCar = async (req, res) => {
+    console.log("🚗 UPDATE CAR - ID:", req.params.id, "BODY:", req.body);
     try {
         const updatedCar = await CarsService.update(req.params.id, req.body);
         res.status(200).json(updatedCar);

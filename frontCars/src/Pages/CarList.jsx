@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react';
-import { carService } from '../Services/carService';
+import { api } from '../Services/api';
 import { Link } from 'react-router-dom';
 
 const CarList = () => {
     const [cars, setCars] = useState([]);
 
     useEffect(() => {
-    carService.getAll()
+    api.car.getAll()
         .then(res => {
-            console.log("Données reçues :", res.data); 
-            if (Array.isArray(res.data)) {
-                setCars(res.data);
+            console.log("Données reçues :", res); 
+            if (Array.isArray(res)) {
+                setCars(res);
             } 
             
-            else if (res.data && Array.isArray(res.data.cars)) {
-                setCars(res.data.cars);
+            else if (res.data && Array.isArray(res.data)) {
+                setCars(res.data);
             }
         })
         .catch(err => console.error("Erreur API :", err));
@@ -22,7 +22,7 @@ const CarList = () => {
 
     const handleDelete = async (id) => {
         if(window.confirm("Supprimer ?")) {
-            await carService.delete(id);
+            await api.car.delete(id);
             setCars(cars.filter(c => c._id !== id));
         }
     };

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Joi = require("joi"); 
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -21,4 +22,20 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-module.exports = User;
+
+const signUpSchema = Joi.object({
+  username: Joi.string().min(3).max(30).required(),
+  email: Joi.string().email().required(),
+  password: Joi.string().min(6).required()
+});
+
+const signInSchema = Joi.object({
+  email: Joi.string().email().required(),
+  password: Joi.string().required()
+});
+
+module.exports = {
+  User,
+  signUpSchema,
+  signInSchema
+};

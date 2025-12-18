@@ -1,6 +1,6 @@
 const { generateJWT } = require("../utils/jwt.utils");
 const { hashPassword, comparePassword } = require("../utils/password.utils");
-const User = require("../Models/user.model");
+const {User} = require("../Models/user.model");
 
 exports.SignUp = async (data) => {
   try {
@@ -35,7 +35,7 @@ exports.SignUp = async (data) => {
   } catch (error) {
     return {
       error: true,
-      message: error,
+      message: error.message || "Erreur serveur interne",
       statusCode: 500,
     };
   }
@@ -80,7 +80,7 @@ exports.SignIn = async (data) => {
   } catch (error) {
     return {
       error: true,
-      message: error,
+      message: error.message || "Erreur serveur interne",
       statusCode: 500,
     };
   }
