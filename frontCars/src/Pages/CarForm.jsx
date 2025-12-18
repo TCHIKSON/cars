@@ -3,14 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { carService } from "../Services/carService";
 
 const CarForm = () => {
-  const { id } = useParams(); // Si id existe, on est en modification
+  const { id } = useParams(); 
   const navigate = useNavigate();
   const isEditMode = Boolean(id);
 
   const [car, setCar] = useState({ brand: "", model: "", year: new Date().getFullYear(), category: "", imageUrl: "", isAvailable: false });
   const [error, setError] = useState("");
 
-  // 1. Si on est en mode édition, on charge les données existantes
+ 
   useEffect(() => {
     if (isEditMode) {
       carService
@@ -23,13 +23,13 @@ const CarForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Nettoyage des données pour éviter l'erreur Joi (_id, __v...)
+ 
       const dataToSend = {
         brand: car.brand,
         model: car.model,
         category: car.category,
         year: Number(car.year),
-        price: car.price ? Number(car.price) : undefined, // Évite d'envoyer une chaîne vide
+        price: car.price ? Number(car.price) : undefined, 
         isAvailable: Boolean(car.isAvailable),
         imageUrl: car.imageUrl || "",
       };

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-const Joi = require("joi"); // N'oublie pas d'importer Joi ici
+const Joi = require("joi"); 
 
-// 1. Schéma Mongoose (pour la DB)
+
 const carMongooseSchema = new mongoose.Schema(
   {
     brand: { type: String, required: true, trim: true },
@@ -23,7 +23,7 @@ const carMongooseSchema = new mongoose.Schema(
 
 const Car = mongoose.model("Car", carMongooseSchema);
 
-// 2. Schéma Joi (pour ton Middleware de validation)
+
 const carJoiSchema = Joi.object({
   brand: Joi.string().min(2).required(),
   model: Joi.string().required(),
@@ -38,9 +38,8 @@ const carJoiSchema = Joi.object({
   imageUrl: Joi.string().allow("").optional(),
 });
 
-// 3. EXPORT DES DEUX
-// On utilise un objet pour pouvoir importer précisément ce qu'on veut
+
 module.exports = {
   Car,
-  carSchema: carJoiSchema, // On l'exporte sous le nom 'carSchema'
+  carSchema: carJoiSchema, 
 };

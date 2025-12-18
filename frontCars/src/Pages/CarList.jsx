@@ -8,13 +8,11 @@ const CarList = () => {
     useEffect(() => {
     carService.getAll()
         .then(res => {
-            console.log("Données reçues :", res.data); // Regarde dans la console (F12)
-            
-            // Si res.data est directement le tableau :
+            console.log("Données reçues :", res.data); 
             if (Array.isArray(res.data)) {
                 setCars(res.data);
             } 
-            // Si ton tableau est caché dans une propriété (ex: res.data.cars) :
+            
             else if (res.data && Array.isArray(res.data.cars)) {
                 setCars(res.data.cars);
             }

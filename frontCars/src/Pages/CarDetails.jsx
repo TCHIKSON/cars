@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom'; // Ajout de Link pour naviguer
+import { useParams, Link } from 'react-router-dom'; 
 import { carService } from '../Services/carService';
 import CarSpec from '../Components/CarSpec';
-import CarSales from '../Components/CarSale'; // Import du nouveau composant
+import CarSales from '../Components/CarSale'; 
 
 const CarDetails = () => {
     const { id } = useParams();
@@ -33,16 +33,16 @@ const CarDetails = () => {
             <h2>Détails du véhicule : {carData.brand}</h2>
             
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-                {/* Colonne de gauche : Caractéristiques */}
+               
                 <CarSpec car={carData} />
                 
-                {/* Colonne de droite : Vente */}
+                
                 <CarSales car={carData} onActionSuccess={loadCar} />
             </div>
 
             <hr />
             
-            {/* Bouton pour aller à la page de modification complète */}
+            
             <Link to={`/edit/${id}`}>
                 <button style={{ backgroundColor: '#007bff', color: 'white' }}>
                     Modifier les informations techniques

@@ -4,9 +4,9 @@ const CarSales = ({ car, onActionSuccess }) => {
     
     const toggleAvailability = async () => {
         try {
-            // On inverse juste l'état de disponibilité
+            
             await carService.update(car._id, { isAvailable: !car.isAvailable });
-            // On prévient le parent qu'il doit recharger les données
+            
             if (onActionSuccess) onActionSuccess();
         } catch (error) {
             console.error("Erreur lors de la mise à jour du statut:", error);
