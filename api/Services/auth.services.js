@@ -33,9 +33,10 @@ exports.SignUp = async (data) => {
       statusCode: 201,
     };
   } catch (error) {
+    console.error("❌ Erreur SignUp:", error);  // ← AJOUTE CETTE LIGNE
     return {
       error: true,
-      message: error,
+      message: error.message || "Erreur serveur",
       statusCode: 500,
     };
   }
@@ -45,22 +46,28 @@ exports.SignIn = async (data) => {
   try {
     const { email, password } = data;
 
+    console.log("🔍 Tentative de connexion pour:", email);  // ← AJOUTE CETTE LIGNE
+
     const user = await User.findOne({ email });
+
+    console.log("👤 Utilisateur trouvé:", user ? "OUI" : "NON");  // ← AJOUTE CETTE LIGNE
 
     if (!user) {
       return {
         error: true,
-        message: "Identifiants invalide.",
+        message: "Identifiants invalides.",
         statusCode: 401,
       };
     }
 
     const isPasswordValid = await comparePassword(password, user.password);
 
+    console.log("🔑 Mot de passe valide:", isPasswordValid);  // ← AJOUTE CETTE LIGNE
+
     if (!isPasswordValid) {
       return {
         error: true,
-        message: "Identifiants invalide.",
+        message: "Identifiants invalides.",
         statusCode: 401,
       };
     }
@@ -71,6 +78,8 @@ exports.SignIn = async (data) => {
       email: user.email,
     });
 
+    console.log("✅ Token généré avec succès");  // ← AJOUTE CETTE LIGNE
+
     return {
       error: false,
       message: "Vous êtes désormais connecté.",
@@ -78,9 +87,11 @@ exports.SignIn = async (data) => {
       statusCode: 200,
     };
   } catch (error) {
+    console.error("❌ Erreur SignIn:", error);  // ← AJOUTE CETTE LIGNE
+    console.error("Stack:", error.stack);  // ← AJOUTE CETTE LIGNE
     return {
       error: true,
-      message: error,
+      message: error.message || "Erreur serveur",
       statusCode: 500,
     };
   }
