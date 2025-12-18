@@ -1,5 +1,5 @@
 
-const CarsService = require('./services/cars.service')
+const CarsService = require('../Services/cars.service.js');
 
 exports.getAllCars = async (req, res) => {
     try {

@@ -1,16 +1,21 @@
+
+const Joi = require('joi');
+
 const validateWithJoi = (schema) => {
     return async (req, res, next) => {
         try {
-            await schema.validateAsync(req.body);
-            next();
+            
+            await schema.validateAsync(req.body, { abortEarly: false });
+            next(); 
         } catch (error) {
-            return {
+            
+            return res.status(400).json({
                 error: true,
-                message: error.message,
+                message: error.details.map(d => d.message).join(', '),
                 statusCode: 400
-            }
+            });
         }
-    }
-}
+    };
+};
 
-module.exports = validateWithJoi;
+module.exports = {validateWithJoi};
