@@ -85,9 +85,6 @@ function SignIn() {
               Créer un compte
             </Link>
           </p>
-          <Link to="/" className="auth-back">
-            ← Retour à l'accueil
-          </Link>
         </div>
       </div>
     </div>
