@@ -1,16 +1,23 @@
 const mongoose = require("mongoose");
-const Joi = require("joi"); 
-
+const Joi = require("joi");
 
 const carMongooseSchema = new mongoose.Schema(
   {
-    brand: { type: String, required: true, trim: true },
+    brand: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Brand",
+      required: false,
+    },
     model: { type: String, required: true, trim: true },
     category: { type: String, required: true, trim: true },
     year: {
       type: Number,
       min: 1900,
       max: new Date().getFullYear() + 1,
+    },
+    tags: {
+      type: [String],
+      default: [],
     },
     price: { type: Number, required: true },
     isAvailable: { type: Boolean, default: true },
@@ -23,9 +30,12 @@ const carMongooseSchema = new mongoose.Schema(
 
 const Car = mongoose.model("Car", carMongooseSchema);
 
-
 const carJoiSchema = Joi.object({
-  brand: Joi.string().min(2).required(),
+  tags: Joi.array().items(Joi.string()).optional(),
+
+  brand: Joi.string()
+    .regex(/^[0-9a-fA-F]{24}$/)
+    .required(),
   model: Joi.string().required(),
   category: Joi.string().required(),
   year: Joi.number()
@@ -38,8 +48,7 @@ const carJoiSchema = Joi.object({
   imageUrl: Joi.string().allow("").optional(),
 });
 
-
 module.exports = {
   Car,
-  carSchema: carJoiSchema, 
+  carSchema: carJoiSchema,
 };

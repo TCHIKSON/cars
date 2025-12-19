@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { api } from "../Services/api";
+import "./Style/SignIn.css";
 
 function SignIn() {
   const navigate = useNavigate();
@@ -14,89 +15,77 @@ function SignIn() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     api.auth
       .signIn(form)
       .then((response) => {
-                console.log("🔍 RÉPONSE REÇUE:", response);
         if (response.error) {
           setError(response.message);
           return;
         }
-
         localStorage.setItem("token", response.data.token);
         api.updateAccessToken(response.data.token);
-
-        navigate("/add");
+        window.dispatchEvent(new Event("authChange"));
+        navigate("/CarsList");
       })
       .catch((err) => {
-        console.log(err);
-        setError(err.message);
+        setError("Identifiants incorrects ou mot de passe erroné.", err);
       });
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-950">
-      <div className="w-full max-w-md rounded-xl bg-slate-900 p-8 shadow-lg shadow-slate-900/70">
-        <h1 className="mb-6 text-center text-2xl font-semibold text-slate-50">
-          Connexion
-        </h1>
+    <div className="auth-container">
+      <div className="auth-wrapper">
+        <div className="auth-header">
+          <h1>Connexion</h1>
+          <p className="auth-subtitle">Accédez à votre espace, Katcha!!</p>
+        </div>
+
         {error && (
-          <p className="mb-4 rounded-md bg-red-500/10 px-3 py-2 text-sm text-red-400">
-            {error?.message || error}
-          </p>
+          <div className="auth-error">
+            <span>!</span> {error}
+          </div>
         )}
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label
-              className="mb-1 block text-sm text-slate-300"
-              htmlFor="email"
-            >
-              Email
-            </label>
+
+        <form onSubmit={handleSubmit} className="auth-form">
+          <div className="input-group">
+            <label htmlFor="email">Adresse Email</label>
             <input
               id="email"
               name="email"
               type="email"
+              placeholder="votre@email.com"
               required
               value={form.email}
               onChange={handleChange}
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-50 outline-none ring-blue-500/0 transition focus:ring-2"
             />
           </div>
-          <div>
-            <label
-              className="mb-1 block text-sm text-slate-300"
-              htmlFor="password"
-            >
-              Mot de passe
-            </label>
+
+          <div className="input-group">
+            <label htmlFor="password">Mot de passe</label>
             <input
               id="password"
               name="password"
               type="password"
+              placeholder="••••••••"
               required
               value={form.password}
               onChange={handleChange}
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-50 outline-none ring-blue-500/0 transition focus:ring-2"
             />
           </div>
-          <button
-            type="submit"
-            className="mt-2 w-full rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm shadow-blue-900/40 transition hover:bg-blue-500"
-          >
+
+          <button type="submit" className="btn btn-primary auth-submit">
             Se connecter
           </button>
         </form>
-        <p className="mt-4 text-center text-xs text-slate-400">
-          Pas de compte ?{" "}
-          <Link
-            to="/signup"
-            className="font-medium text-blue-400 hover:text-blue-300"
-          >
-            Créer un compte
-          </Link>
-        </p>
+
+        <div className="auth-footer">
+          <p>
+            Pas encore de compte ?{" "}
+            <Link to="/signup" className="auth-link">
+              Créer un compte
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );

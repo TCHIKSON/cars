@@ -1,0 +1,76 @@
+/* TagFilterBar.css */
+.tag-filter-bar {
+    display: flex;
+    align-items: center;
+    padding: 15px 40px;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    gap: 20px;
+}
+
+.filter-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #888;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.tags-scroll-container {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    scrollbar-width: none; /* Firefox */
+}
+
+.tags-scroll-container::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.tag-chip {
+    background: transparent;
+    border: 1px solid #e2e2e2;
+    padding: 6px 16px;
+    font-size: 13px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tag-chip:hover {
+    border-color: #000;
+}
+
+.tag-chip.active {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+.chip-close {
+    font-size: 16px;
+    line-height: 1;
+    color: #bb0a30;
+}
+
+.clear-tags-btn {
+    background: none;
+    border: none;
+    color: #bb0a30;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.clear-tags-btn:hover {
+    text-decoration: underline;
+}

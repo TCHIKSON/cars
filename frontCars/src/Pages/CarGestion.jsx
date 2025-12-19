@@ -8,13 +8,15 @@ import "./Style/CarGrid.css";
 const CarGrid = () => {
   const [cars, setCars] = useState([]);
   const [filteredCars, setFilteredCars] = useState([]);
-  const [selectedBrand, setSelectedBrand] = useState("all");
+  const [selectedBrand] = useState("all");
   const [selectedTags, setSelectedTags] = useState([]);
 
+  const token = localStorage.getItem("token");
+  const [isAuthenticated] = useState(!!token);
   const navigate = useNavigate();
 
-  const viewCar = (carId) => {
-    navigate(`/car/${carId}`);
+  const editCar = (carId) => {
+    navigate(`/edit/${carId}`);
   };
 
   useEffect(() => {
@@ -61,24 +63,24 @@ const CarGrid = () => {
     applyFilters(selectedBrand, newTags);
   };
 
-  const handleBrandSelect = (brandId) => {
-    setSelectedBrand(brandId);
-    applyFilters(brandId, selectedTags);
+
+
+  const handleDelete = async (id) => {
+    if (window.confirm("Supprimer ce véhicule ?")) {
+      try {
+        await api.car.delete(id);
+        const updatedCars = cars.filter((c) => c._id !== id);
+        setCars(updatedCars);
+
+        applyFilters(selectedBrand, selectedTags, updatedCars);
+      } catch (err) {
+        console.error("Erreur suppression:", err);
+      }
+    }
   };
 
   return (
     <div className="car-grid">
-      <BrandCarousel
-        onBrandSelect={handleBrandSelect}
-        selectedBrand={selectedBrand}
-      />
-
-      <TagFilterBar
-        cars={cars}
-        selectedTags={selectedTags}
-        onTagToggle={handleTagToggle}
-      />
-
       <div className="car-grid-header">
         <h2>
           {selectedBrand === "all" && selectedTags.length === 0
@@ -92,7 +94,7 @@ const CarGrid = () => {
           <div key={car._id} className="audi-car-card">
             <div
               className="audi-image-wrapper"
-              onClick={() => viewCar(car._id)}
+              onClick={() => editCar(car._id)}
             >
               <img
                 src={car.imageUrl || "/default-car.jpg"}
@@ -102,7 +104,7 @@ const CarGrid = () => {
               {car.isAvailable ? (
                 <span className="badge-available">Disponible</span>
               ) : (
-                <span className="badge-sold">Indisponible</span>
+                <span className="badge-sold">Vendu</span>
               )}
             </div>
 
@@ -139,11 +141,19 @@ const CarGrid = () => {
 
               <div className="audi-footer">
                 <button
-                  onClick={() => viewCar(car._id)}
+                  onClick={() => editCar(car._id)}
                   className="btn-audi-primary"
                 >
-                  Découvrir
+                  Modifier
                 </button>
+                {isAuthenticated && (
+                  <button
+                    onClick={() => handleDelete(car._id)}
+                    className="btn-audi-delete"
+                  >
+                    Supprimer
+                  </button>
+                )}
               </div>
             </div>
           </div>

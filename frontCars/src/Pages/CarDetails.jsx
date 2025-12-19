@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom'; 
+import { useParams, Link, useNavigate } from 'react-router-dom'; 
 import { api } from '../Services/api';
 import CarSpec from '../Components/CarSpec';
-import CarSales from '../Components/CarSale'; 
+import CarSales from '../Components/CarSale';
+import './Style/CarDetails.css'; 
 
 const CarDetails = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [carData, setCarData] = useState(null);
     const [loading, setLoading] = useState(true);
+
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const loadCar = async () => {
         try {
@@ -21,33 +25,116 @@ const CarDetails = () => {
     };
 
     useEffect(() => {
+        const token = localStorage.getItem("token");
+        setIsAuthenticated(!!token);
         loadCar();
     }, [id]);
 
-    if (loading) return <p>Chargement...</p>;
-    if (!carData) return <p>Voiture introuvable.</p>;
+    if (loading) return (
+        <div className="loading-container">
+            <div className="loading-spinner"></div>
+            <p>Chargement en cours...</p>
+        </div>
+    );
+
+    if (!carData) return (
+        <div className="error-container">
+            <h2>Véhicule introuvable</h2>
+            <Link to="/CarsList" className="btn-back">Retour à la liste</Link>
+        </div>
+    );
 
     return (
-        <div style={{ maxWidth: '800px', margin: 'auto', padding: '20px' }}>
-            <Link to="/">← Retour à la liste</Link>
-            <h2>Détails du véhicule : {carData.brand}</h2>
+        <div className="car-details-container">
             
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-               
-                <CarSpec car={carData} />
-                
-                
-                <CarSales car={carData} onActionSuccess={loadCar} />
+            <div className="nav-header">
+                <button onClick={() => navigate("/CarsList")} className="back-btn">
+                    <span>←</span> Retour
+                </button>
+                <div className="breadcrumb">
+                    <Link to="/CarsList">Véhicules</Link>
+                    <span>/</span>
+                    <span>{carData.brand?.name || "Marque inconnue"}</span>
+                    <span>/</span>
+                    <span>{carData.model}</span>
+                </div>
             </div>
 
-            <hr />
             
+            <div className="hero-section">
+                <div className="car-image-container">
+                    <img 
+                        src={carData.imageUrl || '/default-car.jpg'} 
+                        alt={`${carData.brand?.name} ${carData.model}`}
+                        className="hero-image"
+                    />
+                    <div className="image-overlay">
+                        <div className="car-title">
+                            <h1>{carData.brand?.name || "Marque inconnue"}</h1>
+                            <h2>{carData.model}</h2>
+                            <div className="car-year">{carData.year}</div>
+                        </div>
+                        <div className="price-badge">
+                            {carData.price?.toLocaleString()} €
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             
-            <Link to={`/edit/${id}`}>
-                <button style={{ backgroundColor: '#007bff', color: 'white' }}>
-                    Modifier les informations techniques
-                </button>
-            </Link>
+            <div className="main-content">
+                <div className="content-grid">
+                    
+                    <div className="specs-section">
+                        <div className="section-header">
+                            <h3>Spécifications </h3>
+                            <p>Découvrez tous les détails de ce véhicule</p>
+                        </div>
+                        <CarSpec car={carData} />
+                    </div>
+                    
+                    
+                    <div className="sales-section">
+                        <div className="section-header">
+                            <h3>Informations commerciales</h3>
+                            <p>Prix et disponibilité</p>
+                        </div>
+                        <CarSales car={carData} onActionSuccess={loadCar} />
+                    </div>
+                </div>
+
+                
+                <div className="action-section">
+                    <div className="action-buttons">
+                        {isAuthenticated && (
+                            <Link to={`/edit/${id}`} className="btn btn-primary">
+                                <span className="btn-icon"></span>
+                                Modifier le véhicule
+                            </Link>
+                        )}
+                        <button className="btn btn-secondary">
+                            <span className="btn-icon">📞</span>
+                            Nous contacter
+                        </button>
+                        {/*<button className="btn btn-outline">
+                            <span className="btn-icon"></span>
+                            Sauvegarder
+                        </button>*/}
+                    </div>
+                </div>
+                {carData.tags && carData.tags.length > 0 && (
+                    <div className="tags-section">
+                        <h4>Caractéristiques</h4>
+                        <div className="tags-container">
+                            {carData.tags.map((tag, index) => (
+                                <span key={index} className="tag">
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };
