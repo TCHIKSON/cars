@@ -7,7 +7,7 @@ const { validateWithJoi } = require("../Middleware/validation.middleware.js");
 router.get("/", CarsController.getAllCars);
 router.get("/:id", CarsController.getCarById);
 router.post("/create", validateWithJoi(carSchema), CarsController.createCar);
-router.put("/update/:id", /*validateWithJoi(carSchema)*/ CarsController.updateCar);
+router.put("/update/:id", validateWithJoi(carSchema), CarsController.updateCar);
 router.delete("/:id", CarsController.deleteCar);
 
 module.exports = router;

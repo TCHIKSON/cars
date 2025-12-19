@@ -127,15 +127,48 @@ export class ApiService {
     },
     delete: async (id) => {
       return await this.delete(`/cars/${id}`);
-    }
+    },
   };
-
+  brand = {
+    create: async (data) => {
+      return await this.post("/brands/create", data);
+    },
+    getById: async (id) => {
+      return await this.get(`/brands/${id}`);
+    },
+    getAll: async () => {
+      return await this.get(`/brands`);
+    },
+    update: async (id, data) => {
+      return await this.put(`/brands/update/${id}`, data);
+    },
+    delete: async (id) => {
+      return await this.delete(`/brands/${id}`);
+    },
+  };
+  reservation = {
+    create: async (data) => {
+      return await this.post("/reservations/create", data);
+    },
+    getById: async (id) => {
+      return await this.get(`/reservations/${id}`);
+    },
+    getAll: async () => {
+      return await this.get(`/reservations`);
+    },
+    update: async (id, data) => {
+      return await this.put(`/reservations/update/${id}`, data);
+    },
+    delete: async (id) => {
+      return await this.delete(`/reservations/${id}`);
+    },
+  };
   category = {
     create: async ({ name, description }) => {
       return await this.post("/categories", { name, description });
     },
     getAll: async () => {
       return await this.get(`/categories`);
-    }
+    },
   };
 }

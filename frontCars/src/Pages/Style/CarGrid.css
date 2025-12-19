@@ -1,0 +1,163 @@
+/* CarGrid.css - Style Audi */
+:root {
+  --audi-black: #000000;
+  --audi-grey-dark: #333333;
+  --audi-grey-light: #f0f0f0;
+  --audi-border: #e6e6e6;
+  --audi-red: #bb0a30; /* Rouge Audi officiel */
+}
+
+.car-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 40px; /* Plus d'espace entre les cartes */
+  padding: 40px;
+  background-color: #fff;
+}
+
+.audi-car-card {
+  border: none;
+  border-bottom: 1px solid var(--audi-border); /* Juste une ligne en bas */
+  background: #fff;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.audi-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.audi-img {
+  width: 100%;
+  height: 240px;
+  object-fit: contain; /* Pour ne pas couper la voiture */
+  transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.audi-car-card:hover .audi-img {
+  transform: scale(1.05);
+}
+
+/* Badges Discrétion */
+.badge-available {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: rgba(221, 248, 123, 0.9);
+  padding: 4px 12px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+.badge-sold {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: rgba(233, 144, 144, 0.9);
+  padding: 4px 12px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.audi-content {
+  padding: 25px 0; /* Pas de padding latéral pour un look bord à bord */
+}
+
+.audi-category {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #888;
+  margin-bottom: 5px;
+}
+
+.audi-title {
+  font-size: 24px;
+  font-weight: 300; /* Typo fine type Audi */
+  color: var(--audi-black);
+  margin: 0 0 20px 0;
+}
+
+.brand-name {
+  font-weight: 700; /* Marque en gras, modèle en fin */
+}
+
+.audi-specs {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.spec-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.spec-item .label {
+  font-size: 11px;
+  color: #aaa;
+  text-transform: uppercase;
+}
+
+.spec-item .value {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.spec-divider {
+  width: 1px;
+  height: 30px;
+  background: var(--audi-border);
+  margin: 0 25px;
+}
+
+.audi-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* Bouton Style Audi */
+.btn-audi-primary {
+  background: var(--audi-black);
+  color: #fff;
+  border: 1px solid var(--audi-black);
+  padding: 12px 30px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-audi-primary:hover {
+  background: transparent;
+  color: var(--audi-black);
+}
+
+.btn-audi-delete {
+  background: transparent;
+  color: #ccc;
+  border: none;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.btn-audi-delete:hover {
+  color: var(--audi-red);
+}
+
+.mini-tag {
+  font-size: 11px;
+  color: #999;
+  margin-right: 10px;
+  font-style: italic;
+}

@@ -1,0 +1,427 @@
+/* BrandCarousel.css */
+.brand-carousel {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 30px 20px;
+  margin-bottom: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+/* Ajoutez ces styles à votre BrandCarousel.css existant */
+
+.search-container {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-input-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 45px 12px 45px;
+  border: 2px solid #e0e0e0;
+  border-radius: 25px;
+  font-size: 16px;
+  background: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #bb001b;
+  box-shadow: 0 4px 20px rgba(187, 0, 27, 0.2);
+}
+
+.search-input::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  font-size: 18px;
+  pointer-events: none;
+}
+
+.clear-search {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 16px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.clear-search:hover {
+  background: #f0f0f0;
+  color: #bb001b;
+}
+
+.search-results-info {
+  font-size: 14px;
+  color: #666;
+  background: #f8f9fa;
+  padding: 8px 15px;
+  border-radius: 15px;
+  border: 1px solid #e0e0e0;
+}
+
+.no-results {
+  text-align: center;
+  padding: 40px 20px;
+  background: white;
+  border-radius: 15px;
+  margin-top: 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.no-results p {
+  color: #666;
+  margin: 0 0 15px 0;
+  font-size: 16px;
+}
+
+.reset-search {
+  background: linear-gradient(45deg, #bb001b, #ff4444);
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.reset-search:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(187, 0, 27, 0.3);
+}
+
+/* Responsive pour la recherche */
+@media (max-width: 768px) {
+  .search-input-wrapper {
+    max-width: 300px;
+  }
+
+  .search-input {
+    font-size: 14px;
+    padding: 10px 40px 10px 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-input-wrapper {
+    max-width: 250px;
+  }
+
+  .search-input {
+    font-size: 13px;
+    padding: 8px 35px 8px 35px;
+  }
+
+  .search-icon {
+    font-size: 16px;
+    left: 12px;
+  }
+
+  .clear-search {
+    right: 12px;
+    font-size: 14px;
+  }
+}
+.carousel-header h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 8px 0;
+  letter-spacing: 0.5px;
+}
+
+.carousel-header p {
+  color: #666;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.carousel-arrow {
+  width: 50px;
+  height: 50px;
+  border: none;
+  background: linear-gradient(45deg, #bb001b, #ff4444);
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(187, 0, 27, 0.3);
+  flex-shrink: 0;
+}
+
+.carousel-arrow:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(187, 0, 27, 0.4);
+}
+
+.carousel-arrow:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px 5px;
+  flex: 1;
+
+  /* Hide scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.brand-item {
+  min-width: 120px;
+  text-align: center;
+  padding: 20px 15px;
+  background: white;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.brand-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: #bb001b;
+}
+
+.brand-item.active {
+  background: linear-gradient(135deg, #bb001b, #ff4444);
+  color: white;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(187, 0, 27, 0.3);
+}
+
+.brand-logo {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.brand-item.active .brand-logo {
+  background: rgba(255, 255, 255, 0.2);
+}
+/* Ajoutez à BrandCarousel.css */
+
+.image-placeholder {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f0f0;
+  border-radius: 4px;
+}
+
+.loading-dot {
+  width: 20px;
+  height: 20px;
+  background: #ccc;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.brand-logo img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.brand-item.active .brand-logo img {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3)) brightness(1.1);
+}
+
+.all-brands-icon {
+  font-size: 30px;
+  color: #bb001b;
+}
+
+.brand-item.active .all-brands-icon {
+  color: white;
+}
+
+.brand-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.brand-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.2;
+}
+
+.brand-item.active .brand-name {
+  color: white;
+}
+
+.brand-country {
+  font-size: 12px;
+  color: #666;
+  font-weight: 400;
+}
+
+.brand-item.active .brand-country {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.brand-carousel-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  background: #f8f9fa;
+  border-radius: 15px;
+  margin-bottom: 30px;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #bb001b;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .carousel-container {
+    gap: 10px;
+  }
+
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .brand-item {
+    min-width: 100px;
+    padding: 15px 10px;
+  }
+
+  .brand-logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .brand-logo img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .carousel-header h3 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-carousel {
+    padding: 20px 15px;
+  }
+
+  .carousel-container {
+    gap: 8px;
+  }
+
+  .brand-item {
+    min-width: 85px;
+    padding: 12px 8px;
+  }
+
+  .brand-logo {
+    width: 45px;
+    height: 45px;
+    margin-bottom: 10px;
+  }
+
+  .brand-name {
+    font-size: 12px;
+  }
+
+  .brand-country {
+    font-size: 10px;
+  }
+}

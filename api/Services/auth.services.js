@@ -1,6 +1,6 @@
 const { generateJWT } = require("../utils/jwt.utils");
 const { hashPassword, comparePassword } = require("../utils/password.utils");
-const {User} = require("../Models/user.model");
+const { User } = require("../Models/user.model");
 
 exports.SignUp = async (data) => {
   try {

@@ -27,7 +27,7 @@ function SignUp() {
 
         setSuccess(response.message);
         setError("");
-        
+
         setTimeout(() => {
           navigate("/");
         }, 1500);

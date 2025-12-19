@@ -1,0 +1,311 @@
+/* CarDetails.css */
+.car-details-container {
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+.nav-header {
+  background: white;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.back-btn {
+  background: none;
+  border: 1px solid #ddd;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-btn:hover {
+  background: #f0f0f0;
+  transform: translateX(-2px);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #666;
+  font-size: 14px;
+}
+
+.breadcrumb a {
+  color: #666;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: #000;
+}
+
+.hero-section {
+  position: relative;
+  height: 60vh;
+  overflow: hidden;
+}
+
+.car-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  color: white;
+  padding: 60px 40px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.car-title h1 {
+  font-size: 3rem;
+  font-weight: 300;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+.car-title h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 5px 0;
+}
+
+.car-year {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  font-weight: 300;
+}
+
+.price-badge {
+  background: rgba(255,255,255,0.9);
+  color: #000;
+  padding: 15px 25px;
+  border-radius: 50px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  backdrop-filter: blur(10px);
+}
+
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.specs-section,
+.sales-section {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.section-header {
+  margin-bottom: 25px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+.section-header h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 5px 0;
+}
+
+.section-header p {
+  color: #666;
+  margin: 0;
+  font-size: 14px;
+}
+
+.action-section {
+  background: white;
+  border-radius: 4px; /* Angles plus vifs style Audi */
+  padding: 40px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  margin-bottom: 30px;
+  border-left: 4px solid #BB001B; /* Rappel rouge Audi */
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 12px 28px;
+  border-radius: 2px; /* Presque carré pour le côté luxe */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 13px;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-primary {
+  background: #000; /* Noir Audi */
+  color: white;
+  border: 1px solid #000;
+}
+
+.btn-primary:hover {
+  background: #333;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #000;
+  border: 1px solid #000;
+}
+
+.btn-secondary:hover {
+  background: #000;
+  color: #fff;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid #ccc;
+  color: #666;
+}
+
+.btn-outline:hover {
+  border-color: #000;
+  color: #000;
+}
+
+.tags-section {
+  background: #fff;
+  border-radius: 4px;
+  padding: 40px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.tags-section h4 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 300;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  background: #f8f8f8;
+  color: #333;
+  padding: 6px 14px;
+  border-radius: 2px; /* Cohérence avec les boutons */
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid #eee;
+  text-transform: uppercase;
+}
+
+.loading-container,
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #BB001B;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.btn-back {
+  background: #BB001B;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+  background: #900015;
+  transform: translateY(-2px);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .nav-header {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .car-title h1 {
+    font-size: 2rem;
+  }
+  
+  .car-title h2 {
+    font-size: 1.5rem;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+  }
+  
+  .image-overlay {
+    padding: 30px 20px 20px;
+  }
+}.btn-icon {
+  font-size: 1.1rem;
+  filter: grayscale(1); /* Rend les emojis plus sobres */
+}

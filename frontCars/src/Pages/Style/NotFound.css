@@ -1,0 +1,47 @@
+.notfound-container {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #ffffff; /* Fond blanc ou noir selon ta préférence */
+    padding: 20px;
+}
+
+.notfound-code {
+    font-size: 8rem;
+    font-weight: 900;
+    line-height: 1;
+    margin: 0;
+    color: #000;
+    letter-spacing: -5px;
+}
+
+.notfound-divider {
+    width: 60px;
+    height: 4px;
+    background: #BB001B; /* Rouge Audi */
+    margin: 20px auto;
+}
+
+.notfound-title {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+.notfound-text {
+    color: #666;
+    max-width: 400px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+}
+
+.notfound-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
