@@ -13,6 +13,8 @@ import Header from "./Components/Header.jsx";
 import CarGestion from "./Pages/CarGestion.jsx";
 import ProtectedRoute from "./utils/ProtectedRoute.jsx";
 import NotFound from "./Pages/NotFound";
+import MyCars from "./Pages/MyCars.jsx";
+import Profile from "./Pages/Profile.jsx";
 function App() {
   return (
     <Router>
@@ -30,6 +32,22 @@ function App() {
             element={
               <ProtectedRoute>
                 <CarGestion />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/my-cars"
+            element={
+              <ProtectedRoute>
+                <MyCars />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
               </ProtectedRoute>
             }
           />

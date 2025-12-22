@@ -116,10 +116,6 @@ const CarDetails = () => {
                             <span className="btn-icon">📞</span>
                             Nous contacter
                         </button>
-                        {/*<button className="btn btn-outline">
-                            <span className="btn-icon"></span>
-                            Sauvegarder
-                        </button>*/}
                     </div>
                 </div>
                 {carData.tags && carData.tags.length > 0 && (

@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../Services/api";
-import BrandCarousel from "../Components/BrandCarousel";
-import TagFilterBar from "../Components/TagFilterBar";
 import "./Style/CarGrid.css";
 
 const CarGrid = () => {

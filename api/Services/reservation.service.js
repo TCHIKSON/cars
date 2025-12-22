@@ -1,8 +1,8 @@
 const { Reservation } = require("../Models/reservation.model.js");
 
 class ReservationService {
-  async getAll() {
-    return await Reservation.find();
+  async getAll(userId) {
+    return await Reservation.find({ user: userId });
   }
 
   async getById(id) {
