@@ -2,8 +2,9 @@ const ReservationService = require("../Services/reservation.service.js");
 
 exports.getAllReservations = async (req, res) => {
   try {
-    res.set("Cache-Control", "public, max-age=3600");
     const reservations = await ReservationService.getAll();
+    console.log("ho",reservations);
+    
     res.status(200).json(reservations);
   } catch (error) {
     res.status(500).json({ message: error.message });

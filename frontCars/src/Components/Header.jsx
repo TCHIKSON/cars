@@ -20,7 +20,7 @@ const Header = () => {
     navigate("/");
   };
 
-  const checkUserAuth = () => {
+  const checkUserAuth = () => { 
     const token = localStorage.getItem("token");
     if (token) {
       try {
@@ -134,7 +134,7 @@ const Header = () => {
             </div>
           )}
 
-          {/* Menu mobile */}
+          
           <button
             className="mobile-menu-btn"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -146,7 +146,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Menu mobile */}
+      
       {isMenuOpen && (
         <div className="mobile-menu">
           <Link to="/CarsList" onClick={() => setIsMenuOpen(false)}>

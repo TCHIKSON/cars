@@ -19,7 +19,7 @@ app.use("/api/brands", brandRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/cars", carRoutes);
 
-// Route de test rapide
+
 app.get("/api/message", (req, res) => {
   res.json({ message: "Backend opérationnel avec DB et Services !" });
 });

@@ -6,7 +6,10 @@ const reservationSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
-      unique: true,
+    },
+    email: {
+      type: String,
+      required: true,
     },
     car: {
       type: String,
@@ -29,6 +32,7 @@ const Reservation = mongoose.model("Reservation", reservationSchema);
 
 const reservationSchemaJoiSchema = Joi.object({
   name: Joi.string().min(2).required(),
+  email: Joi.string().email().required(),
   car: Joi.string().min(2).required(),
   logoUrl: Joi.string().allow("").optional(),
   startDate: Joi.date().required(),

@@ -35,7 +35,7 @@ exports.createBrand = async (req, res) => {
     } else {
       const { name, country, logoUrl } = req.body;
 
-      const newBrand = new BrandsService({ name, country, logoUrl });
+      const newBrand = await BrandsService.create({ name, country, logoUrl });
       const result = await newBrand.save();
 
       return res.status(201).json({

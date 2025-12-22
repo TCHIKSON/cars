@@ -8,23 +8,24 @@ const BrandCarousel = ({ onBrandSelect, selectedBrand }) => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const carouselRef = useRef(null);
-  const isLoadedRef = useRef(false);
+
 
   useEffect(() => {
-    if (isLoadedRef.current) return;
+   
 
     const loadBrands = async () => {
       try {
+        setLoading(true)
         const result = await api.brand.getAll();
 
         const allBrands = [
           { _id: "all", name: "Toutes les marques", logoUrl: "", country: "" },
           ...(Array.isArray(result) ? result : result.data || []),
         ];
-
+       
         setBrands(allBrands);
         setFilteredBrands(allBrands);
-        isLoadedRef.current = true;
+        
 
         console.log(` ${allBrands.length} marques chargées`);
       } catch (error) {
@@ -35,6 +36,11 @@ const BrandCarousel = ({ onBrandSelect, selectedBrand }) => {
     };
 
     loadBrands();
+    window.addEventListener("brandUpdated", loadBrands);
+
+  return () => {
+    window.removeEventListener("brandUpdated", loadBrands);
+  };
   }, []);
 
   useEffect(() => {

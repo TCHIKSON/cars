@@ -71,7 +71,8 @@ const CarSales = ({ car, onActionSuccess }) => {
     }
 
     const reservationData = {
-      name: `${decodedToken.email || "Utilisateur"}`,
+      name: `${decodedToken.username || "Utilisateur"}`,
+      email: `${decodedToken.email || "Utilisateur"}`,
       car: car._id,
       logoUrl: car.imageUrl || "",
       startDate: new Date(),

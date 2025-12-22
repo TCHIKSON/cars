@@ -1,0 +1,109 @@
+.reservations-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+    animation: fadeIn 0.5s ease;
+}
+
+.reservations-header {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+}
+
+.reservations-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin: 0;
+}
+
+.reservations-header p {
+    color: #888;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.reservation-card {
+    display: flex;
+    background: #fff;
+    border: 1px solid #eee;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.reservation-card:hover {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.res-image img {
+    width: 200px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.res-info {
+    flex: 1;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.res-main h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.res-date {
+    font-size: 14px;
+    color: #666;
+}
+
+.badge-confirmed {
+    font-size: 10px;
+    text-transform: uppercase;
+    background: #000;
+    color: #fff;
+    padding: 4px 12px;
+    font-weight: bold;
+}
+
+.res-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-res-view {
+    background: transparent;
+    border: 1px solid #000;
+    padding: 8px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 11px;
+}
+
+.btn-res-cancel {
+    background: transparent;
+    border: none;
+    color: #BB001B; /* Rouge Audi */
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.empty-reservations {
+    text-align: center;
+    padding: 100px 0;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
